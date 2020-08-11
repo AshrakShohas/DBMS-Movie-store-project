@@ -1,0 +1,188 @@
+
+(Distinct operation)
+select  DISTINCT(year) from movie;
+select distinct(castname) from moviecast;
+select distinct(director_name) from director;
+select distinct(countryname) from country;
+select  DISTINCT(title) from movie;
+select  DISTINCT(budget) from movie;
+select  DISTINCT(genrename) from moviegenre;
+
+(join operation)
+ select title,countryname
+   from movie,country
+   where movie.countryid=country.countryid;
+
+select movie.title,director.director_name
+   from movie,director
+   where movie.directorid=director.directorid;
+
+select title,castname
+   from movie,moviecast
+   where movie.movieid=moviecast.movieid;
+
+select title,genrename
+   from movie,moviegenre
+   where movie.movieid=moviegenre.movieid;
+
+
+(inner join)
+select movie.movieid,movie.title
+    from movie
+   inner join moviegenre on movie.movieid=moviegenre.movieid;
+
+(left join)
+select movie.movieid,movie.title
+       from movie
+    left join moviegenre on movie.movieid=moviegenre.movieid;
+
+(right join)
+select movie.movieid,movie.title
+       from movie
+    right join moviegenre on movie.movieid=moviegenre.movieid;
+
+
+(union)
+select title,year
+    from movie
+    union
+    select countryname,countryid
+    from country
+    union
+    select director_name,directorid
+    from director;
+
+select title
+    from movie
+    union
+    select countryname
+    from country
+    union
+    select director_name
+    from director
+    union
+   select castname
+   from moviecast;
+
+(having and group by)
+(duplicate value findings)
+select castname
+    from moviecast
+    group by castname
+    having count(castname) >1;
+
+
+
+select title,runtime,budget
+from movie;
+
+
+(sort)
+Select * from movie
+  order by year;
+
+Select * from movie
+  order by year desc;
+
+
+select title
+from movie
+order by year;
+
+Select * from movie
+  order by imdbrating;
+
+select title 
+from movie
+order by imdbrating;
+
+
+
+Select * from movie
+  order by directorId;
+
+select title 
+from movie
+order by directorid;
+
+select title 
+from movie
+order by countryid;
+
+(like operation)
+select *  from movie
+   where title like 'Foster';
+
+
+select *  from movie
+   where title like 'Mad Max: Fury Road';
+
+ select * from movie
+   where countryid like '2201';
+
+
+select title
+from movie 
+where countryid like '2210';
+
+
+select title
+from movie 
+where countryid like '2207';
+
+(between not between operation)
+select * from movie
+   where countryid in(select countryid from movie);
+
+ select * from movie
+    where directorid not in ('105','106');
+
+select * from movie
+    where year not between 2002 and 2006;
+
+select * from movie
+    where year between 2002 and 2006;
+
+
+
+select * from movie;
+
+
+
+(conditional)
+select castname
+   from moviecast
+   where movieid='029';
+
+select title
+    from movie
+    where movieid='029';
+
+
+select title
+    from movie
+    where year='2006';
+
+
+select movieid
+from moviecast
+where castname='Nusrat Imrose Tisha';
+
+
+
+ select director_name
+    from director
+    where directorid='117';
+
+select title
+    from movie
+    where directorid='117';
+
+select title
+    from movie
+    where countryid='2211';
+
+(maximum and minimum)
+select max(budget) from movie;
+
+select min(budget) from movie;
